@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace MAUI_for_Beginners.ViewModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
-namespace MAUI_for_Beginners.ViewModel
+[QueryProperty("Text", "Text")]
+public partial class DetailPageViewModel : ObservableObject
 {
-    internal class DetailPageViewModel
+    [ObservableProperty]
+    string text;
+
+    [RelayCommand]
+    async Task GoBack()
     {
+        await Shell.Current.GoToAsync("..");
     }
 }
+

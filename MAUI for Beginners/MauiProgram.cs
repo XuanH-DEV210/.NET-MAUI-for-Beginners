@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MAUI_for_Beginners.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace MAUI_for_Beginners
 {
@@ -14,9 +15,16 @@ namespace MAUI_for_Beginners
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
+
+
+            builder.Services.AddTransient<DetailPage>();
+            builder.Services.AddTransient<DetailPageViewModel>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
 #endif
 
             return builder.Build();
